@@ -1,3 +1,4 @@
+use std::io;
 fn main() {
     let first_number = 10;
     let second_number = 5;
@@ -14,4 +15,14 @@ fn main() {
     println!("Subtraction: {}", subtraction);
     println!("Multiplication: {}", multiplication);
     println!("Division: {}", division);
+
+    let mut input = String::new();
+
+    println!("Enter a number:");
+
+    io::stdin()
+        .read_line(&mut input)
+        .expect("Failed to read input");
+
+    println!("You entered: {}", input);
 }
