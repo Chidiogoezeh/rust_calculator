@@ -24,5 +24,7 @@ fn main() {
         .read_line(&mut input)
         .expect("Failed to read input");
 
-    println!("You entered: {}", input);
+    let number: i32 = input.trim().parse().expect("Please enter a number");
+
+    println!("You entered: {}", number);
 }
