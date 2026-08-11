@@ -21,31 +21,54 @@ fn divide(a: f64, b: f64) -> f64 {
 }
 
 fn main() {
-    let first_number = 10.0;
-    let second_number = 5.0;
+    println!("==Rust Calculator==");
+    println!("1. Addition");
+    println!("2. Subtraction");
+    println!("3. Multiplication");
+    println!("4. Division");
+    println!("5. Exit");
 
-    let addition = add(first_number, second_number);
-    let subtraction = subtract(first_number, second_number);
-    let multiplication = multiply(first_number, second_number);
-    let division = divide(first_number, second_number);
+    println!("Choose an operation:");
 
-    println!("First number: {}", first_number);
-    println!("Second number: {}", second_number);
-
-    println!("Addition: {}", addition);
-    println!("Subtraction: {}", subtraction);
-    println!("Multiplication: {}", multiplication);
-    println!("Division: {}", division);
-
-    let mut input = String::new();
-
-    println!("Enter a number:");
+    let mut choice = String::new();
 
     io::stdin()
-        .read_line(&mut input)
+        .read_line(&mut choice)
         .expect("Failed to read input");
 
-    let number: i32 = input.trim().parse().expect("Please enter a number");
+    let choice: u32 = choice.trim().parse().expect("Please enter a number");
 
-    println!("You entered: {}", number);
+    println!("Enter first number:");
+
+    let mut first_input = String::new();
+
+    io::stdin()
+        .read_line(&mut first_input)
+        .expect("Failed to read input");
+
+    let first_number: f64 = first_input.trim().parse().expect("Please enter a number");
+
+    println!("Enter second number:");
+
+    let mut second_input = String::new();
+
+    io::stdin()
+        .read_line(&mut second_input)
+        .expect("Failed to read input");
+
+    let second_number: f64 = second_input.trim().parse().expect("Please enter a number");
+
+    match choice {
+        1 => println!("Result: {}", add(first_number, second_number)),
+
+        2 => println!("Result: {}", subtract(first_number, second_number)),
+
+        3 => println!("Result: {}", multiply(first_number, second_number)),
+
+        4 => println!("Result: {}", divide(first_number, second_number)),
+
+        5 => println!("Goodbye",),
+
+        _ => println!("Invalid choice"),
+    }
 }
