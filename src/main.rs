@@ -27,15 +27,23 @@ fn divide(a: f64, b: f64) -> f64 {
 
 // Get a number from the user
 fn get_number(prompt: &str) -> f64 {
-    println!("{}", prompt);
+    loop {
+        println!("{}", prompt);
 
-    let mut input = String::new();
+        let mut input = String::new();
 
-    io::stdin()
-        .read_line(&mut input)
-        .expect("Failed to read input");
+        io::stdin()
+            .read_line(&mut input)
+            .expect("Failed to read input");
 
-    input.trim().parse().expect("Please enter a valid number")
+        match input.trim().parse::<f64>() {
+            Ok(number) => return number,
+
+            Err(_) => {
+                println!("Please enter a valid number.");
+            }
+        }
+    }
 }
 
 fn main() {
