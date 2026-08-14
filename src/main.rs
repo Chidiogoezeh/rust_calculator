@@ -20,8 +20,22 @@ fn divide(a: f64, b: f64) -> f64 {
     a / b
 }
 
+// Get a number from the user
+fn get_number(prompt: &str) -> f64 {
+    println!("{}", prompt);
+
+    let mut input = String::new();
+
+    io::stdin()
+        .read_line(&mut input)
+        .expect("Failed to read input");
+
+    input.trim().parse().expect("Please enter a valid number")
+}
+
 fn main() {
     println!("==Rust Calculator==");
+
     println!("1. Addition");
     println!("2. Subtraction");
     println!("3. Multiplication");
@@ -38,37 +52,41 @@ fn main() {
 
     let choice: u32 = choice.trim().parse().expect("Please enter a number");
 
-    println!("Enter first number:");
-
-    let mut first_input = String::new();
-
-    io::stdin()
-        .read_line(&mut first_input)
-        .expect("Failed to read input");
-
-    let first_number: f64 = first_input.trim().parse().expect("Please enter a number");
-
-    println!("Enter second number:");
-
-    let mut second_input = String::new();
-
-    io::stdin()
-        .read_line(&mut second_input)
-        .expect("Failed to read input");
-
-    let second_number: f64 = second_input.trim().parse().expect("Please enter a number");
-
     match choice {
-        1 => println!("Result: {}", add(first_number, second_number)),
+        1 => {
+            let first_number = get_number("Enter first number:");
+            let second_number = get_number("Enter second number:");
 
-        2 => println!("Result: {}", subtract(first_number, second_number)),
+            println!("Result: {}", add(first_number, second_number));
+        }
 
-        3 => println!("Result: {}", multiply(first_number, second_number)),
+        2 => {
+            let first_number = get_number("Enter first number:");
+            let second_number = get_number("Enter second number:");
 
-        4 => println!("Result: {}", divide(first_number, second_number)),
+            println!("Result: {}", subtract(first_number, second_number));
+        }
 
-        5 => println!("Goodbye",),
+        3 => {
+            let first_number = get_number("Enter first number:");
+            let second_number = get_number("Enter second number:");
 
-        _ => println!("Invalid choice"),
+            println!("Result: {}", multiply(first_number, second_number));
+        }
+
+        4 => {
+            let first_number = get_number("Enter first number:");
+            let second_number = get_number("Enter second number:");
+
+            println!("Result: {}", divide(first_number, second_number));
+        }
+
+        5 => {
+            println!("Goodbye");
+        }
+
+        _ => {
+            println!("Invalid choice");
+        }
     }
 }
