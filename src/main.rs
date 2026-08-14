@@ -64,7 +64,14 @@ fn main() {
             .read_line(&mut choice)
             .expect("Failed to read input");
 
-        let choice: u32 = choice.trim().parse().expect("Please enter a number");
+        let choice: u32 = match choice.trim().parse() {
+            Ok(number) => number,
+
+            Err(_) => {
+                println!("Please enter a number between 1 and 5.");
+                continue;
+            }
+        };
 
         match choice {
             1 => {
@@ -101,7 +108,7 @@ fn main() {
             }
 
             _ => {
-                println!("Invalid choice");
+                println!("Invalid choice. Please choose a number between 1 and 5.");
             }
         }
     }
