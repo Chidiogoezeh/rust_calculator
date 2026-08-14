@@ -17,7 +17,12 @@ fn multiply(a: f64, b: f64) -> f64 {
 
 // Division function
 fn divide(a: f64, b: f64) -> f64 {
-    a / b
+    if b == 0.0 {
+        println!("Error: Cannot divide by zero.");
+        0.0
+    } else {
+        a / b
+    }
 }
 
 // Get a number from the user
